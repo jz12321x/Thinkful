@@ -1,0 +1,94 @@
+----MOD4--------------------------------------------------------------
+The IDs and durations for all trips of duration greater than 500, ordered by duration.
+select trip_id, duration from trips where duration>500 order by duration desc;
+
+Every column of the stations table for station id 84.
+select * from stations where station_id=84;
+
+The min temperatures of all the occurrences of rain in zip 94301.
+select mintemperaturef from weather where zip=94301;
+
+----MOD5---------------------------------------------------------------
+What was the hottest day in our data set? Where was that?
+SELECT date, zip, max(maxtemperaturef) FROM weather GROUP BY maxtemperaturef, zip, date ORDER BY maxtemperaturef desc;
+select date,zip,maxtemperaturef from weather where maxtemperaturef = (select max(maxtemperaturef) from weather);
+
+How many trips started at each station?
+SELECT count(trip_id), start_station  FROM trips GROUP BY start_station;
+
+What's the shortest trip that happened?
+select trip_id, duration from trips where duration = (select min(duration) from trips);
+
+What is the average trip duration, by end station?
+select avg(duration), end_station from trips group by end_station;
+
+----MOD6--------------------------------------------------------------
+What are the three longest trips on rainy days?
+SELECT
+	w.date,
+	w.precipitationin,
+	t.trip_id,
+	t.duration
+FROM
+	weather w
+JOIN
+	trips t
+ON
+	date(w.date) = date(t.start_date)
+WHERE
+	w.precipitationin>1
+ORDER BY
+	t.duration desc
+Limit 3;
+
+Which station is full most often?
+with f as (
+select * from status where docks_available=0
+)
+select
+	count(*) as ct,
+	station_id
+from f
+group by station_id
+order by ct desc;
+
+Return a list of stations with a count of number of trips starting at that station but ordered by dock count.
+with tripct as(
+select count(*) as ct,start_terminal from trips group by start_terminal
+)
+select
+	t.start_terminal,
+	s.dockcount,
+	t.ct
+from
+	stations s
+join
+	tripct t
+on 
+	s.station_id = t.start_terminal
+order by
+	dockcount desc;
+
+(Challenge) What's the length of the longest trip for each day it rains anywhere?
+with rd as(
+SELECT
+	w.date,
+	w.precipitationin,
+	t.trip_id,
+	t.duration
+FROM
+	weather w
+JOIN
+	trips t
+ON
+	date(w.date) = date(t.start_date)
+WHERE
+	w.precipitationin>.1
+ORDER BY
+	t.duration desc
+)
+select
+	max(duration),
+	date
+from rd
+group by date;
