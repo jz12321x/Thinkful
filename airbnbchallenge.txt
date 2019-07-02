@@ -1,0 +1,22 @@
+What's the most expensive listing? What else can you tell me about the listing?
+	select * from sfo_listings order by price desc;
+	A 'full victorian house' with a minimum stay of 2 nights
+
+What neighborhoods seem to be the most popular?
+select sum(number_of_reviews) as total_reviews, neighbourhood from sfo_listings group by neighbourhood order by total_reviews desc;
+Mission has the most reviews/activity, followed by Western Addition and Castro/Upper Market
+
+What time of year is the cheapest time to go to San Francisco? What about the busiest?
+
+
+select count(*), date_part('month',calender_date) as mon from sfo_calendar 
+where available='t' group by mon ;
+
+select count(*), date_part('month',review_date)as mon from sfo_reviews group by mon order by count desc;
+It seems the wintertime is the time most listings are available, but summertime is when the most reviews come in.
+
+select avg(price::money::numeric) as pr, date_part('month',calender_date)as mon 
+from sfo_calendar where price != 'null'
+group by mon
+order by pr desc;
+These results seem very arbitrary, September has the cheapest average price, followed by October and July.
