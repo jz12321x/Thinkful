@@ -1,0 +1,27 @@
+Does a new supplement help people sleep better?
+A/B: Old supplement vs New supplement
+Sample: Some number of people that would buy sleep assistance
+Hypothesis: The new supplement will help people sleep better
+Outcomes: Amount of time it takes to fall asleep and amount of time spent asleep
+Other Measured Variables: Side effects (drowsiness, nausea), subject profile (age, sex, etc)
+
+Will new uniforms help a gym's business?
+A/B: Old Uniform vs New Uniform
+Sample: A group of people that have held gym memberships before
+Hypothesis: New uniforms cause a rise in customer satisfaction
+Outcomes: two different surveys rating the old and new uniforms 0-10
+Other Vars: subject profile
+
+Will a new homepage improve my online exotic pet rental business?
+A/B: Old Homepage vs New
+Sample: Visitors to pet rental sites or general internet users
+Hypothesis: New homepage attracts more visitors
+Outcomes: Number of clicks/visitors over a set period of time
+Other Vars: How many clicks lead to buys, subject profile
+
+If I put 'please read' in the email subject will more people read my emails?
+A/B: Existence of 'please read' in email subject
+Sample: General population
+Hypothesis: More people read emails with 'please read' in the title
+Outcomes: Need a method to record whether an email was clicked. A set number of emails can be sent over a set period of time, and see what percentage where read. 
+Other Vars: Replies, time to deletion, subject profile 
